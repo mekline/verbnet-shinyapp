@@ -1,0 +1,1 @@
+["NP V NP ADJ", "NP V ADJ", "NP.agent V NP", "NP V NP.theme", "NP V NP PP.location", "NP V PP.destination", "NP V NP PP.initial_location", "NP V PP.initial_location", "NP V NP PP.initial_location PP.destination", "NP.theme V", "NP V", "NP V NP PP.result", "NP V PP.result", "NP V PP.initial_location PP.destination", "NP V NP PP.destination", "NP V PP.location"]

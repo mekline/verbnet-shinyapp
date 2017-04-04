@@ -1,0 +1,1 @@
+["NP V NP", "PP.location V PP.theme", "NP V NP PP.initial_location", "PP.location V NP", "NP V NP PP.initial_location PP.destination", "NP V NP PP.destination PP.initial_location", "There V NP PP", "NP V NP PP.destination", "NP V PP.location"]
