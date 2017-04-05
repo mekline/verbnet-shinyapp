@@ -9,5 +9,7 @@ search_list<-c("verb","class","role","frame")
 shinyUI(fluidPage(
   titlePanel("Exploring Verbnet"),
   fluidRow(selectInput('search1', label = h3("Search on:"),choices = as.character(search_list))),
-  fluidRow(htmlOutput('selectUI'))
+  fluidRow(htmlOutput('selectUI')),
+  fluidRow(htmlOutput('select2')),
+  fluidRow(htmlOutput("verb",container = pre))
   ))

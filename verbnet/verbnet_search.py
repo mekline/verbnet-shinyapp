@@ -4,18 +4,27 @@ import json
 
 classes_dict = pickle.load(open('save.p','rb'))
 
-def class_to_verbs(class_name):
+def class_to_verbs(search):
 	'''given the verb class, this function prints all the members in the main verb class and associated subclasses'''
-	d = {}
 	for x in classes_dict:
+		for keys in x:
+			if '-' in keys:
+				class_verb = keys
 		my_list = [(k, v) for (k, v) in x.iteritems()]
-		if class_name in k:
+		if search in k:
 			my_list = my_list[0]
 			verb_list = (my_list[1][0]['members'])
 			verb_list = " ".join(verb_list)
 			verb_list = verb_list.replace(" ", ", ")
-			d[my_list[0]] = verb_list
-			return(d)
+			verb_list = verb_list.split(", ")
+			for i, s in enumerate(verb_list):
+				if '.0' in s:
+					s = s.split('.')
+					s = s[0]
+					s += '_class_'
+					s += str(class_verb)
+					verb_list[i] = s
+			return(verb_list)
 
 def gen_dict_extract(key, var):
 	''''This function extracts whatever keys out of the dictionaries'''
@@ -31,9 +40,8 @@ def gen_dict_extract(key, var):
 					for result in gen_dict_extract(key, d):
 						yield result
 
-def frames_given_verb(search_verb,d_list=classes_dict):
-	'''given a verb, prints frames for that verb'''
-	frame_list = []
+def class_given_verb(search_verb):
+	'''returns the class dictionary that a verb is in'''
 	if '_class_' in search_verb:
 		search_verb = search_verb.split('_class_')
 		search_class = search_verb[-1]
@@ -55,6 +63,19 @@ def frames_given_verb(search_verb,d_list=classes_dict):
 					verbs_list[i] = v
 			if search_verb in verbs_list:
 				correct_class = x
+	return(correct_class)
+
+def class_name_given_verb(search_verb):
+	'''returns class name given verb'''
+	x = class_given_verb(search_verb)
+	x = x.keys()
+	x = x[0]
+	return(x)
+
+def frames_given_verb(search_verb,d_list=classes_dict):
+	'''given a verb, prints frames for that verb'''
+	frame_list = []
+	correct_class = class_given_verb(search_verb)
 	frame = gen_dict_extract('frames', correct_class)
 	frame = list(frame)
 	iterframe = iter(frame)
@@ -64,68 +85,27 @@ def frames_given_verb(search_verb,d_list=classes_dict):
 	frame_list=list(set(frame_list))
 	return(frame_list)
 
-# def arg_given_verb(search_verb,d_list=classes_dict):
-# 	'''given a verb, prints frames for that verb'''
-# 	if '.' in search_verb:
-# 		search_verb = search_verb.split('.')
-# 		search_verb = search_verb[0]
-# 	for x in d_list:
-# 		my_list = [(k, v) for (k, v) in x.iteritems()]
-# 		verbs_list=my_list[0][1][0]['members']
-# 		verbs_list = " ".join(verbs_list)
-# 		verbs_list = verbs_list.replace(" ", ", ")
-# 		verbs_list = verbs_list.split(", ")
-# 		for i,v in enumerate(verbs_list):
-# 			if '.' in v:
-# 				v = v.split('.')
-# 				v = v[0]
-# 				verbs_list[i] = v
-# 		if any(search_verb in s for s in verbs_list):
-# 			arguments = []				
-# 			key = x.keys() 
-# 			key = key[0]
-# 			x = x[key]
-# 			x = x[-1]
-# 			x = x['frames']
-# 			for frame in x:
-# 				argument = frame['frames']['frame']
-# 				if argument != '':
-# 					arguments.append(argument)
-# 			print('These frames take arguments for this verb:')
-# 			print(arguments)
-
-def agent_given_verb(search_verb,search_role,d_list=classes_dict):
-	'''given a verb, answer Does it take an agent?'''
-	if '_class_' in search_verb:
-		search_verb = search_verb.split('_class_')
-		search_class = search_verb[-1]
-		for x in d_list:
-			for keys in x:
-				if search_class in keys:
-					correct_class = x
-	else:
-		for x in d_list:
-			my_list = [(k, v) for (k, v) in x.iteritems()]
-			verbs_list=my_list[0][1][0]['members']
-			verbs_list = " ".join(verbs_list)	
-			verbs_list = verbs_list.replace(" ", ", ")
-			verbs_list = verbs_list.split(", ")
-			for i,v in enumerate(verbs_list):
-				if '.' in v:
-					v = v.split('.')
-					v = v[0]
-					verbs_list[i] = v
-			if search_verb in verbs_list:
-				correct_class = x
- 	key = correct_class.keys() 
- 	key = key[0]
- 	correct_class = correct_class[key]
- 	correct_class = correct_class[1]
- 	correct_class = correct_class['themroles']
- 	if search_role in correct_class:
- 		return('Yes, this verb takes %ss.' %search_role)
- 	else:
- 		return('No, this verb does not take %ss.' %search_role)
+def roles_given_verb(search_verb,d_list=classes_dict):
+	'''given a verb, prints frames for that verb'''
+	role_list = []
+	correct_class = class_given_verb(search_verb)
+	role = gen_dict_extract('ThemRole', correct_class)
+	role = list(role)
+	for i, v in enumerate(role):
+		if type(v) == dict:
+			role[i] = v.keys()
+	role_list.append(role)
+	role_list = [item for sublist in role_list for item in sublist] #flattening list
+	role_list = [item for sublist in role_list for item in sublist]
+	for i, v in enumerate(role_list):
+		if '?' in v:
+			role_list[i] = v.translate(None,"?")
+		if '_' in v:
+			v = v.split('_')
+			role_list[i] = v[0]
+	role_list = list(set(role_list)) #making this a list of unique verbs (removing duplicates)
+	role_list = list(filter(None, role_list)) #removing empty strings
+	return(role_list)
 
 # create a list of all the possible verb classes
 class_list = []
@@ -192,7 +172,7 @@ all_frames = list(filter(None, all_frames)) #removing empty strings
 def first_choice(search_term):
 	'''Based on search term selected, returns list for second choice for shiny'''
 	if search_term == 'verb':
-		return(all_verbs)
+		return('NA')
 	elif search_term == 'class':
 		return(class_list)
 	elif search_term == 'role':
@@ -200,6 +180,90 @@ def first_choice(search_term):
 	elif search_term == 'frame':
 		return(all_frames)
 
+def frames_to_verbs(search):
+	'''given a syntactic frame, gives list of verbs'''
+	verbs = []
+	for x in classes_dict:
+		for keys in x:
+			if '-' in keys:
+				class_verb = keys
+		frame_list = []
+		frame = gen_dict_extract('frames', x)
+		frame = list(frame)
+		iterframe = iter(frame)
+		next(iterframe)
+		for f in iterframe:
+			frame_list.append(f['frame'])
+		if search in frame_list:
+			my_list = [(k, v) for (k, v) in x.iteritems()]
+			my_list = my_list[0]
+			verb_list = (my_list[1][0]['members'])
+			verb_list = " ".join(verb_list)
+			verb_list = verb_list.replace(" ", ", ")
+			verb_list = verb_list.split(", ")
+			for i, s in enumerate(verb_list):
+				if '.0' in s:
+					s = s.split('.')
+					s = s[0]
+					s += '_class_'
+					s += str(class_verb)
+					verb_list[i] = s
+			verbs.append(verb_list)
+	verbs = [item for sublist in verbs for item in sublist]
+	return(verbs)
 
+def roles_to_verbs(search):
+	'''given a thematic role, returns list of verbs'''
+	verbs = []
+	for x in classes_dict:
+		for keys in x:
+			if '-' in keys:
+				class_verb = keys
+		roles = gen_dict_extract('ThemRole', x)
+		roles = list(roles)
+		for i, v in enumerate(roles):
+			if type(v) == dict:
+				roles[i] = v.keys()
+		roles = [item for sublist in roles for item in sublist]
+		if search in roles:
+			my_list = [(k, v) for (k, v) in x.iteritems()]
+			my_list = my_list[0]
+			verb_list = (my_list[1][0]['members'])
+			verb_list = " ".join(verb_list)
+			verb_list = verb_list.replace(" ", ", ")
+			verb_list = verb_list.split(", ")
+			for i, s in enumerate(verb_list):
+				if '.0' in s:
+					s = s.split('.')
+					s = s[0]
+					s += '_class_'
+					s += str(class_verb)
+					verb_list[i] = s
+			verbs.append(verb_list)
+	verbs = [item for sublist in verbs for item in sublist]
+	return(verbs)
 
+def second_choice(search_term,search2):
+	'''after making second choice, gives list of verbs'''
+	if search_term == 'verb':
+		return(all_verbs)
+	elif search_term == 'class':
+		l = class_to_verbs(search2)
+	elif search_term == 'role':
+		l = roles_to_verbs(search2)	
+	elif search_term == 'frame':
+		l = frames_to_verbs(search2)
+	return(l)
 
+def final_print(verb):
+	'''Given final verb, prints all information needed'''
+	frames = frames_given_verb(verb)
+	role = roles_given_verb(verb)
+	v_class = class_name_given_verb(verb)
+	return(str(verb) + '\n' +
+		'Class: ' + str(v_class) + '\n' +
+		'Roles: ' + str(role) + '\n' +
+		'Frames: ' + str(frames))
+
+test=roles_given_verb('accept')
+print(test)
