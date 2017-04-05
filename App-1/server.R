@@ -1,6 +1,7 @@
 library(shiny)
 library(rPython)
 library(rjson)
+library(shinythemes)
 setwd("/Users/laurenskorb/Repos/shiny_verbnet/verbnet/")
 python.load("/Users/laurenskorb/Repos/shiny_verbnet/verbnet/verbnet_search.py")
 
