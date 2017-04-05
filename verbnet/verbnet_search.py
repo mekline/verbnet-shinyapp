@@ -127,8 +127,7 @@ def agent_given_verb(search_verb,search_role,d_list=classes_dict):
  	else:
  		return('No, this verb does not take %ss.' %search_role)
 
-## create a list of all the possible verb classes
-# use this to set options for what people can enter when searching verbs from class
+# create a list of all the possible verb classes
 class_list = []
 for x in classes_dict:
 	my_list = [(k, v) for (k, v) in x.iteritems()]
@@ -136,7 +135,6 @@ for x in classes_dict:
 	class_list.append(verb_class)
 
 #creating list of all verbs
-#to be used for drop down menu and creating text files
 all_verbs = []
 for x in classes_dict:
 	for keys in x:
@@ -159,38 +157,49 @@ all_verbs = [item for sublist in all_verbs for item in sublist] #flattening list
 all_verbs = list(set(all_verbs)) #making this a list of unique verbs (removing duplicates)
 all_verbs = list(filter(None, all_verbs)) #removing empty strings
 
-search_verb = 'sink_class_other_cos-45.4'
-if '_class_' in search_verb:
-		search_verb = search_verb.split('_class_')
-		search_class = search_verb[-1]
-		for x in classes_dict:
-			for keys in x:
-				if search_class in keys:
-					correct_class = x
-print(correct_class)
-key = correct_class.keys() 
-key = key[0]
-correct_class = correct_class[key]
-correct_class = correct_class[1]
-print(correct_class)
-
-search_verb = 'yellow'
+#create list of all roles
+all_roles = []
 for x in classes_dict:
-	my_list = [(k, v) for (k, v) in x.iteritems()]
-	verbs_list=my_list[0][1][0]['members']
-	verbs_list = " ".join(verbs_list)	
-	verbs_list = verbs_list.replace(" ", ", ")
-	verbs_list = verbs_list.split(", ")
-	for i,v in enumerate(verbs_list):
-		if '.' in v:
-			v = v.split('.')
-			v = v[0]
-			verbs_list[i] = v
-	if search_verb in verbs_list:
-		correct_class = x
-print(correct_class)
-# correct_class = correct_class['themroles']
-# if search_role in correct_class:
-#  	print('Yes, this verb takes %ss.' %search_role)
-# else:
-#  	print('No, this verb does not take %ss.' %search_role)
+	x = gen_dict_extract('ThemRole', x)
+	x = list(x)
+	for i, v in enumerate(x):
+		if type(v) == dict:
+			x[i] = v.keys()
+	all_roles.append(x)
+all_roles = [item for sublist in all_roles for item in sublist] #flattening list
+all_roles = [item for sublist in all_roles for item in sublist]
+for i, v in enumerate(all_roles):
+	if '?' in v:
+		all_roles[i] = v.translate(None,"?")
+	if '_' in v:
+		v = v.split('_')
+		all_roles[i] = v[0]
+all_roles = list(set(all_roles)) #making this a list of unique verbs (removing duplicates)
+all_roles = list(filter(None, all_roles)) #removing empty strings
+
+#create list of all frames
+all_frames = []
+for x in classes_dict:
+	frame = gen_dict_extract('frames', x)
+	frame = list(frame)
+	iterframe = iter(frame)
+	next(iterframe)
+	for f in iterframe:
+		all_frames.append(f['frame'])
+all_frames = list(set(all_frames)) #making this a list of unique verbs (removing duplicates)
+all_frames = list(filter(None, all_frames)) #removing empty strings
+
+def first_choice(search_term):
+	'''Based on search term selected, returns list for second choice for shiny'''
+	if search_term == 'verb':
+		return(all_verbs)
+	elif search_term == 'class':
+		return(class_list)
+	elif search_term == 'role':
+		return(all_roles)
+	elif search_term == 'frame':
+		return(all_frames)
+
+
+
+
