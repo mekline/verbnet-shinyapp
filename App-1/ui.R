@@ -10,6 +10,8 @@ shinyUI(fluidPage(
   titlePanel("Exploring Verbnet"),
   fluidRow(selectInput('search1', label = h3("Search on:"),choices = as.character(search_list))),
   fluidRow(htmlOutput('selectUI')),
+  downloadButton('downloadlist1', 'Download'),
   fluidRow(htmlOutput('select2')),
+  downloadButton('downloadlist2', 'Download'),
   fluidRow(htmlOutput("verb",container = pre))
   ))
