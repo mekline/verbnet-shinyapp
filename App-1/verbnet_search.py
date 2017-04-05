@@ -265,5 +265,5 @@ def final_print(verb):
 		'Roles: ' + str(role) + '\n' +
 		'Frames: ' + str(frames))
 
-test=roles_given_verb('accept')
-print(test)
+
+

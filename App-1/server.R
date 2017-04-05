@@ -1,9 +1,12 @@
 library(shiny)
 library(rPython)
 library(rjson)
+library(RJSONIO)
 library(shinythemes)
-setwd("/Users/laurenskorb/Repos/shiny_verbnet/verbnet/")
-python.load("/Users/laurenskorb/Repos/shiny_verbnet/verbnet/verbnet_search.py")
+library(rsconnect)
+library(methods)
+
+python.load("verbnet_search.py")
 
 # Define server logic required to draw a histogram
 function(input, output,session) {

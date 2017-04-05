@@ -1,10 +1,15 @@
 library(shiny)
 library(rPython)
+library(rjson)
+library(RJSONIO)
 library(shinythemes)
-setwd("/Users/laurenskorb/Repos/shiny_verbnet/verbnet/")
-python.load("/Users/laurenskorb/Repos/shiny_verbnet/verbnet/verbnet_search.py")
+library(rsconnect)
+library(methods)
+
+#setwd("/Users/laurenskorb/Repos/shiny_verbnet/App-1/")
+python.load("verbnet_search.py")
 search_list<-c("verb","class","role","frame")
-install.packages("shinythemes")
+
 # Define UI for application that draws a histogram
 
 shinyUI(fluidPage(
