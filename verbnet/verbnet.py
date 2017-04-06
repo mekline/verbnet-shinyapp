@@ -5,6 +5,15 @@ import json
 import glob
 import cPickle as pickle
 
+def x_strip(x,split):
+	'''stripping formatting for xml files'''
+	x = x.split( )
+	x = x[1]
+	x = x.split(split)
+	x = shlex.split(x[1])
+	x = x[0] #string
+	return(x)
+
 def verbnet_forloop(file):
 	"""This function goes through the lines in the verbnet xml file 
 	and creates lists of keys and values to make a nested dictionary"""
@@ -36,13 +45,7 @@ def verbnet_forloop(file):
 			roles_key = []
 			roles_value = []
 		elif '<THEMROLE type' in x:
-			x = x.split( )
-			role = x[1]
-			role = role.split('type=')
-			role = shlex.split(role[1])
-			role = role[0]
-			role = role.replace('>', '')
-			role = role.replace("?","")
+			role = x_strip(x,'type=')
 			roles_key.append(role)
 		elif '<SELRESTRS logic=' in x:
 		 	x = x.split("\"")
@@ -67,30 +70,15 @@ def verbnet_forloop(file):
 			syntax_values = []
 		elif '<NP value=' in x:
 			syntax_keys.append('NP')
-			x = x.split( )
-			x = x[1]
-			x = x.split('value=')
-			x = shlex.split(x[1])
-			x = x[0]
-			x = x.replace('>', '')
+			x = x_strip(x,'value=')
 			syntax_values.append(x)
 		elif '<VERB value=' in x:
 			syntax_keys.append('VERB')
-			x = x.split( )
-			x = x[1]
-			x = x.split('value=')
-			x = shlex.split(x[1])
-			x = x[0]
-			x = x.replace('>', '')
+			x = x_strip(x,'value=')
 			syntax_values.append(x)
 		elif '<ADV value=' in x:
 			syntax_keys.append('ADV')
-			x = x.split( )
-			x = x[1]
-			x = x.split('value=')
-			x = shlex.split(x[1])
-			x = x[0]
-			x = x.replace('>', '')
+			x = x_strip(x,'value=')
 			syntax_values.append(x)
 		elif '<PREP value=' in x:
 			syntax_keys.append('PREP')
@@ -109,23 +97,15 @@ def verbnet_forloop(file):
 			semantics_values = []
 		elif '<PRED value' in x:
 			semantics_keys.append('value')
-			x = x.split( )
-			sem = x[1]
-			sem = sem.split('value=')
-			sem = shlex.split(sem[1])
-			sem = sem[0]
-			sem = sem.replace('>', '')
+			sem = x_strip(x,'value=')
 			semantics_values.append(sem)
 		elif '<ARGS>' in x:
 			arg_keys = []
 			arg_values = []
 		elif '<ARG type=' in x:
-			x = x.split( )
-			arg = x[1]
-			arg = arg.split('type=')
-			arg = shlex.split(arg[1])
-			arg = arg[0]
+			arg = x_strip(x,'type=')
 			arg_keys.append(arg)
+			x = x.split( )
 			if len(x) < 3:
 				x.append('value=""/>')
 			argv = x[2]
@@ -174,7 +154,4 @@ for file in file_list:
 
 pickle.dump(classes_dict,open('save.p','wb'))
 
-#export to a text file
-#with open('verbnet_txt', 'w') as fout:
-	#json.dump(classes_dict, fout)
 

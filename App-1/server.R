@@ -20,7 +20,7 @@ function(input, output,session) {
       write.csv(python.call("first_choice",input$search1), file)})
    
    output$select2 <- renderUI({
-     selectInput("search3","Select your verb",python.call("second_choice",input$search1,input$search2))
+     selectInput("search3","Select your verb",python.call("return_verb_list",input$search2,input$search1))
    })
    
    output$downloadlist2 <- downloadHandler(
