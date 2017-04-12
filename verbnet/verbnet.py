@@ -22,18 +22,19 @@ def verbnet_forloop(file):
 	for x in POS_list:
 		if '<VNCLASS ID=' in x:
 			class_values = []
-			x = x.split('ID=')
-			x = shlex.split(x[1])
-			class_keys = x[0] #this will always be the main verb class
+			y = x.split('ID=')
+			y = shlex.split(y[1])
+			class_keys = y[0] #this will always be the main verb class
 		elif '<MEMBERS>' in x:
 			members_values = []
 		elif 'MEMBER name=' in x:
-			x=x.split("\"")		
-			name = x[1]
-			if len(x)<6:
-				x.extend(['', '', ''])
-			if x[5] != '':
-				name = x[5] #if there are more than one version of a verb, then use the version with additional numbers attached
+			y=x.split("\"")		
+			name = y[1]
+			#if y[3] != '':
+				#name = y[3] #this includes WN as well
+			if len(y)>5:
+				if y[5] != '':
+					name=y[5]
 			members_values.append(name)
 		elif '<MEMBERS/>' in x:
 			members_dict = {'members':''}

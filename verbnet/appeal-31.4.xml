@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE VNCLASS SYSTEM "vn_class-3.dtd">
 <VNCLASS ID="appeal-31.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vn_schema-3.xsd">
-    <MEMBERS>
-        <MEMBER name="" wn="" grouping=""/>
-    </MEMBERS>
+    <MEMBERS/>
     <THEMROLES>
         <THEMROLE type="Stimulus">
             <SELRESTRS/>

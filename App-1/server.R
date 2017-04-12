@@ -11,7 +11,7 @@ python.load("verbnet_search.py")
 # Define server logic required to draw a histogram
 function(input, output,session) {
    output$selectUI <- renderUI({ 
-    selectInput("search2","Select your choice",python.call("first_choice",input$search1))
+    selectInput("search2",paste("Select your  ",input$search1),python.call("first_choice",input$search1),selected='')
      })
    
    output$downloadlist1 <- downloadHandler(
@@ -20,7 +20,7 @@ function(input, output,session) {
       write.csv(python.call("first_choice",input$search1), file)})
    
    output$select2 <- renderUI({
-     selectInput("search3","Select your verb",python.call("return_verb_list",input$search2,input$search1))
+     selectInput("search3","Select your verb",python.call("second_choice",input$search1,input$search2),selected='')
    })
    
    output$downloadlist2 <- downloadHandler(

@@ -35,13 +35,14 @@ def all_verbs(classes_dict=classes_dict):
 			if '.0' in s:
 				s = s.split('.')
 				s = s[0]
-				s += '_class_'
-				s += str(class_verb)
+				s = ''.join((s, ' (class: ',str(class_verb),')'))
 				verb_list[i] = s
-	all_verbs.append(verb_list)
+		all_verbs.append(verb_list)
 	all_verbs = [item for sublist in all_verbs for item in sublist] #flattening list
 	all_verbs = list(set(all_verbs)) #making this a list of unique verbs (removing duplicates)
 	all_verbs = list(filter(None, all_verbs)) #removing empty strings
+	all_verbs = sorted(all_verbs, key=lambda s: s.lower())
+	all_verbs.append('')
 	return(all_verbs)
 
 def return_verb_list(search_term,search_category):
@@ -84,20 +85,23 @@ def return_verb_list(search_term,search_category):
 					if '.0' in s:
 						s = s.split('.')
 						s = s[0]
-						s += '_class_'
-						s += str(class_verb)
+						s = ''.join((s, ' (class: ',str(class_verb),')'))
 						verb_list[i] = s
 				verbs.append(verb_list)
 		verbs = [item for sublist in verbs for item in sublist]
 		verbs = list(set(verbs))
 		verbs = list(filter(None, verbs))
+		verbs = sorted(verbs, key=lambda s: s.lower())
+		verbs.append('')
 		return(verbs)
+
 
 def class_given_verb(search_verb):
 	'''returns the class dictionary that a verb is in'''
-	if '_class_' in search_verb:
-		search_verb = search_verb.split('_class_')
+	if '(class' in search_verb:
+		search_verb = search_verb.split('(class: ')
 		search_class = search_verb[-1]
+		search_class = search_class.replace(')','')
 		for x in classes_dict:
 			for keys in x:
 				if search_class in keys:
@@ -170,6 +174,8 @@ def first_choice(search_term):
 			my_list = [(k, v) for (k, v) in x.iteritems()]
 			verb_class = my_list[0][0]
 			class_list.append(verb_class)
+		class_list = sorted(class_list, key=lambda s: s.lower())
+		class_list.append('')
 		return(class_list)
 	elif search_term == 'role':
 		all_roles = []
@@ -182,14 +188,17 @@ def first_choice(search_term):
 			all_roles.append(x)
 		all_roles = [item for sublist in all_roles for item in sublist] #flattening list
 		all_roles = [item for sublist in all_roles for item in sublist]
+		all_roles = list(set(all_roles)) #making this a list of unique verbs (removing duplicates)
+		all_roles = list(filter(None, all_roles))
 		for i, v in enumerate(all_roles):
-			if '?' in v:
-				all_roles[i] = v.translate(None,"?")
 			if '_' in v:
 				v = v.split('_')
 				all_roles[i] = v[0]
-		all_roles = list(set(all_roles)) #making this a list of unique verbs (removing duplicates)
-		all_roles = list(filter(None, all_roles))
+		for i, v in enumerate(all_roles): 
+			if '?' in v:
+				all_roles[i] = v.translate(None,'?')
+		all_roles = sorted(all_roles, key=lambda s: s.lower())
+		all_roles.append('')
 		return(all_roles)
 	elif search_term == 'frame':
 		all_frames = []
@@ -202,18 +211,22 @@ def first_choice(search_term):
 				all_frames.append(f['frame'])
 		all_frames = list(set(all_frames)) #making this a list of unique verbs (removing duplicates)
 		all_frames = list(filter(None, all_frames)) #removing empty strings
+		all_frames = sorted(all_frames, key=lambda s: s.lower())
+		all_frames.append('')
 		return(all_frames)
 
 def second_choice(search_term,search2):
 	'''after making second choice, gives list of verbs'''
-	if search_term == 'verb':
-		return(all_verbs)
+	if search_term == '':
+		return('')
 	else:
 		l = return_verb_list(search2,search_term)
 		return(l)
 
 def final_print(verb):
 	'''Given final verb, prints all information needed'''
+	if verb=='':
+		return('')
 	frames = frames_given_verb(verb)
 	role = roles_given_verb(verb)
 	v_class = class_name_given_verb(verb)
@@ -221,6 +234,4 @@ def final_print(verb):
 		'Class: ' + str(v_class) + '\n' +
 		'Roles: ' + str(role) + '\n' +
 		'Frames: ' + str(frames))
-
-
 
