@@ -218,7 +218,7 @@
                 <FRAME>
                     <DESCRIPTION descriptionNumber="1.1.1" primary="NP V ADVP-Middle PP" secondary="Middle Construction" xtag=""/>
                     <EXAMPLES>
-                        <EXAMPLE>Eggs mix well with cream.</EXAMPLE>
+                        <EXAMPLE>The eggs mixed well with cream.</EXAMPLE>
                     </EXAMPLES>
                     <SYNTAX>
                         <NP value="Patient">
@@ -234,15 +234,24 @@
                         </NP>
                     </SYNTAX>
                     <SEMANTICS>
-                        <PRED value="property">
+                        <PRED value="degradation_material_integrity">
                             <ARGS>
-                                <ARG type="ThemRole" value="Patient+Co-Patient"/>
-                                <ARG type="VerbSpecific" value="Prop"/>
+                                <ARG type="Event" value="result(E)"/>
+                                <ARG type="ThemRole" value="Patient"/>
                             </ARGS>
                         </PRED>
-                        <PRED value="Adv">
+                        <PRED value="degradation_material_integrity">
                             <ARGS>
-                                <ARG type="VerbSpecific" value="Prop"/>
+                                <ARG type="Event" value="result(E)"/>
+                                <ARG type="ThemRole" value="Co-Patient"/>
+                            </ARGS>
+                        </PRED>
+                        <PRED value="mingled">
+                            <ARGS>
+                                <ARG type="Event" value="result(E)"/>
+                                <ARG type="Constant" value="physical"/>
+                                <ARG type="ThemRole" value="Patient"/>
+                                <ARG type="ThemRole" value="Co-Patient"/>
                             </ARGS>
                         </PRED>
                     </SEMANTICS>
@@ -250,7 +259,7 @@
                 <FRAME>
                     <DESCRIPTION descriptionNumber="1.1.1" primary="NP V ADVP-Middle" secondary="Middle Construction" xtag=""/>
                     <EXAMPLES>
-                        <EXAMPLE>Eggs mix well.</EXAMPLE>
+                        <EXAMPLE>The eggs mixed well.</EXAMPLE>
                     </EXAMPLES>
                     <SYNTAX>
                         <NP value="Patient">
@@ -262,15 +271,24 @@
                         <ADV/>
                     </SYNTAX>
                     <SEMANTICS>
-                        <PRED value="property">
+                        <PRED value="degradation_material_integrity">
                             <ARGS>
-                                <ARG type="ThemRole" value="Patient_i+Patient_j"/>
-                                <ARG type="VerbSpecific" value="Prop"/>
+                                <ARG type="Event" value="result(E)"/>
+                                <ARG type="ThemRole" value="Patient"/>
                             </ARGS>
                         </PRED>
-                        <PRED value="Adv">
+                        <PRED value="degradation_material_integrity">
                             <ARGS>
-                                <ARG type="VerbSpecific" value="Prop"/>
+                                <ARG type="Event" value="result(E)"/>
+                                <ARG type="ThemRole" value="Co-Patient"/>
+                            </ARGS>
+                        </PRED>
+                        <PRED value="mingled">
+                            <ARGS>
+                                <ARG type="Event" value="result(E)"/>
+                                <ARG type="Constant" value="physical"/>
+                                <ARG type="ThemRole" value="Patient"/>
+                                <ARG type="ThemRole" value="Co-Patient"/>
                             </ARGS>
                         </PRED>
                     </SEMANTICS>
@@ -278,7 +296,7 @@
                 <FRAME>
                     <DESCRIPTION descriptionNumber="1.1.1" primary="NP NP V ADVP-Middle together" secondary="Middle Construction" xtag=""/>
                     <EXAMPLES>
-                        <EXAMPLE>Eggs and cream mix well together.</EXAMPLE>
+                        <EXAMPLE>The eggs and cream mixed well together.</EXAMPLE>
                     </EXAMPLES>
                     <SYNTAX>
                         <NP value="Patient">
@@ -291,15 +309,24 @@
                         <LEX value="together"/>
                     </SYNTAX>
                     <SEMANTICS>
-                        <PRED value="property">
+                        <PRED value="degradation_material_integrity">
                             <ARGS>
-                                <ARG type="ThemRole" value="Patient_i+Patient_j"/>
-                                <ARG type="VerbSpecific" value="Prop"/>
+                                <ARG type="Event" value="result(E)"/>
+                                <ARG type="ThemRole" value="Patient"/>
                             </ARGS>
                         </PRED>
-                        <PRED value="Adv">
+                        <PRED value="degradation_material_integrity">
                             <ARGS>
-                                <ARG type="VerbSpecific" value="Prop"/>
+                                <ARG type="Event" value="result(E)"/>
+                                <ARG type="ThemRole" value="Co-Patient"/>
+                            </ARGS>
+                        </PRED>
+                        <PRED value="mingled">
+                            <ARGS>
+                                <ARG type="Event" value="result(E)"/>
+                                <ARG type="Constant" value="physical"/>
+                                <ARG type="ThemRole" value="Patient"/>
+                                <ARG type="ThemRole" value="Co-Patient"/>
                             </ARGS>
                         </PRED>
                     </SEMANTICS>
@@ -519,7 +546,7 @@
                 <FRAME>
                     <DESCRIPTION descriptionNumber="1.1.1" primary="NP V ADVP-Middle PP" secondary="Middle Construction" xtag=""/>
                     <EXAMPLES>
-                        <EXAMPLE>This computer will connect well to the network.</EXAMPLE>
+                        <EXAMPLE>The computer connected well to the network.</EXAMPLE>
                     </EXAMPLES>
                     <SYNTAX>
                         <NP value="Patient">
@@ -535,15 +562,12 @@
                         </NP>
                     </SYNTAX>
                     <SEMANTICS>
-                        <PRED value="property">
+                        <PRED value="together">
                             <ARGS>
-                                <ARG type="ThemRole" value="Patient+Co-Patient"/>
-                                <ARG type="VerbSpecific" value="Prop"/>
-                            </ARGS>
-                        </PRED>
-                        <PRED value="Adv">
-                            <ARGS>
-                                <ARG type="VerbSpecific" value="Prop"/>
+                                <ARG type="Event" value="end(E)"/>
+                                <ARG type="Constant" value="physical"/>
+                                <ARG type="ThemRole" value="Patient"/>
+                                <ARG type="ThemRole" value="Co-Patient"/>
                             </ARGS>
                         </PRED>
                     </SEMANTICS>
@@ -563,15 +587,12 @@
                         <ADV/>
                     </SYNTAX>
                     <SEMANTICS>
-                        <PRED value="property">
+                        <PRED value="together">
                             <ARGS>
-                                <ARG type="ThemRole" value="Patient_i+Patient_j"/>
-                                <ARG type="VerbSpecific" value="Prop"/>
-                            </ARGS>
-                        </PRED>
-                        <PRED value="Adv">
-                            <ARGS>
-                                <ARG type="VerbSpecific" value="Prop"/>
+                                <ARG type="Event" value="end(E)"/>
+                                <ARG type="Constant" value="physical"/>
+                                <ARG type="ThemRole" value="Patient"/>
+                                <ARG type="ThemRole" value="Co-Patient"/>
                             </ARGS>
                         </PRED>
                     </SEMANTICS>
@@ -592,15 +613,12 @@
                         <LEX value="together"/>
                     </SYNTAX>
                     <SEMANTICS>
-                        <PRED value="property">
+                        <PRED value="together">
                             <ARGS>
-                                <ARG type="ThemRole" value="Patient_i+Patient_j"/>
-                                <ARG type="VerbSpecific" value="Prop"/>
-                            </ARGS>
-                        </PRED>
-                        <PRED value="Adv">
-                            <ARGS>
-                                <ARG type="VerbSpecific" value="Prop"/>
+                                <ARG type="Event" value="end(E)"/>
+                                <ARG type="Constant" value="physical"/>
+                                <ARG type="ThemRole" value="Patient"/>
+                                <ARG type="ThemRole" value="Co-Patient"/>
                             </ARGS>
                         </PRED>
                     </SEMANTICS>

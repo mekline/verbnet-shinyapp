@@ -1,45 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE VNCLASS SYSTEM "vn_class-3.dtd">
-<VNCLASS ID="rush-53.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vn_schema-3.xsd">
+<VNCLASS ID="pronounce-29.3.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vn_schema-3.xsd">
     <MEMBERS>
-        <MEMBER name="hasten" wn="hasten%2:30:00 hasten%2:41:00" grouping="hasten.01"/>
-        <MEMBER name="hurry" wn="hurry%2:30:00 hurry%2:30:01" grouping="hurry.01 hurry.02"/>
-        <MEMBER name="rush" wn="rush%2:30:01 rush%2:30:00" grouping="rush.01 rush.02"/>
+        <MEMBER name="pronounce" wn="pronounce%2:32:01" grouping="pronounce.01"/>
+        <MEMBER name="say" wn="say%2:32:02" grouping="say.05"/>
+        <MEMBER name="spell" wn="spell%2:32:00" grouping="spell.01"/>
     </MEMBERS>
     <THEMROLES>
         <THEMROLE type="Agent">
-            <SELRESTRS>
-                <SELRESTR Value="+" type="animate"/>
-            </SELRESTRS>
+            <SELRESTRS/>
         </THEMROLE>
         <THEMROLE type="Theme">
             <SELRESTRS/>
         </THEMROLE>
+        <THEMROLE type="Attribute">
+            <SELRESTRS logic="or">
+	    </SELRESTRS>
+        </THEMROLE>
     </THEMROLES>
     <FRAMES>
         <FRAME>
-            <DESCRIPTION descriptionNumber="0.1" primary="NP V PP.theme" secondary="PP; with-PP" xtag=""/>
+            <DESCRIPTION descriptionNumber="0.2" primary="NP V NP NP" secondary="NP-NP" xtag=""/>
             <EXAMPLES>
-                <EXAMPLE>Maggie hurried with her lunch.</EXAMPLE>
+                <EXAMPLE>She pronounces it 'con-TROV-er-sy'.</EXAMPLE>
             </EXAMPLES>
             <SYNTAX>
                 <NP value="Agent">
                     <SYNRESTRS/>
                 </NP>
                 <VERB/>
-                <PREP value="with">
-                    <SELRESTRS/>
-                </PREP>
                 <NP value="Theme">
+                    <SYNRESTRS/>
+                </NP>
+                <NP value="Attribute">
                     <SYNRESTRS/>
                 </NP>
             </SYNTAX>
             <SEMANTICS>
-                <PRED value="rush">
+                <PRED value="characterize">
                     <ARGS>
                         <ARG type="Event" value="during(E)"/>
-                        <ARG type="ThemRole" value="Agent"/>
                         <ARG type="ThemRole" value="Theme"/>
+                        <ARG type="ThemRole" value="Attribute"/>
                     </ARGS>
                 </PRED>
                 <PRED value="cause">
@@ -51,9 +53,9 @@
             </SEMANTICS>
         </FRAME>
         <FRAME>
-            <DESCRIPTION descriptionNumber="" primary="NP V NP.theme" secondary="NP; Causative variant" xtag=""/>
+            <DESCRIPTION descriptionNumber="" primary="NP V NP PP.attribute" secondary="" xtag=""/>
             <EXAMPLES>
-                <EXAMPLE>Maggie hurried her sister.</EXAMPLE>
+                <EXAMPLE>She says 'enchilada' with a proper Mexican accent.</EXAMPLE>
             </EXAMPLES>
             <SYNTAX>
                 <NP value="Agent">
@@ -63,13 +65,19 @@
                 <NP value="Theme">
                     <SYNRESTRS/>
                 </NP>
+		<PREP value="with in">
+		    <SELRESTRS/>
+		</PREP>    
+		<NP value="Attribute">
+		    <SYNRESTRS/>
+		</NP>    
             </SYNTAX>
             <SEMANTICS>
-                <PRED value="rush">
+                <PRED value="characterize">
                     <ARGS>
                         <ARG type="Event" value="during(E)"/>
-                        <ARG type="ThemRole" value="Agent"/>
                         <ARG type="ThemRole" value="Theme"/>
+                        <ARG type="ThemRole" value="Attribute"/>
                     </ARGS>
                 </PRED>
                 <PRED value="cause">
@@ -80,39 +88,40 @@
                 </PRED>
             </SEMANTICS>
         </FRAME>
-        <FRAME>
-            <DESCRIPTION descriptionNumber="" primary="NP V PP.theme" secondary="PP; through-PP" xtag=""/>
+
+	<FRAME>
+            <DESCRIPTION descriptionNumber="" primary="NP V NP ADVP" secondary="" xtag=""/>
             <EXAMPLES>
-                <EXAMPLE>Mary hurried through the museum.</EXAMPLE>
+                <EXAMPLE>You spelled 'Kalamazoo' incorrectly.</EXAMPLE>
             </EXAMPLES>
             <SYNTAX>
                 <NP value="Agent">
                     <SYNRESTRS/>
                 </NP>
                 <VERB/>
-                <PREP value="through">
-                    <SELRESTRS/>
-                </PREP>
                 <NP value="Theme">
+                    <SYNRESTRS/>
+                </NP>
+                <NP value="Attribute">
                     <SYNRESTRS/>
                 </NP>
             </SYNTAX>
             <SEMANTICS>
-                <PRED value="rush">
+                <PRED value="characterize">
                     <ARGS>
                         <ARG type="Event" value="during(E)"/>
-                        <ARG type="ThemRole" value="Agent"/>
                         <ARG type="ThemRole" value="Theme"/>
+                        <ARG type="ThemRole" value="Attribute"/>
                     </ARGS>
                 </PRED>
-                <PRED value="end">
+                <PRED value="cause">
                     <ARGS>
-                        <ARG type="Event" value="end(E)"/>
-                        <ARG type="ThemRole" value="Theme"/>
+                        <ARG type="ThemRole" value="Agent"/>
+                        <ARG type="Event" value="E"/>
                     </ARGS>
                 </PRED>
             </SEMANTICS>
-        </FRAME>
+	</FRAME>    	
     </FRAMES>
     <SUBCLASSES/>
 </VNCLASS>

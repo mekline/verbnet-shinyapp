@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE VNCLASS SYSTEM "vn_class-3.dtd">
-<VNCLASS ID="defend-85" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vn_schema-3.xsd">
+<VNCLASS ID="defend-72.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vn_schema-3.xsd">
     <MEMBERS>
         <MEMBER name="defend" wn="defend%2:32:00 defend%2:41:00 defend%2:32:01" grouping="defend.01 defend.02 defend.03"/>
         <MEMBER name="insure" wn="insure%2:32:00" grouping="insure.01"/>
@@ -17,13 +17,13 @@
                 <SELRESTR Value="+" type="organization"/>
             </SELRESTRS>
         </THEMROLE>
-        <THEMROLE type="Theme">
+        <THEMROLE type="Beneficiary">
             <SELRESTRS logic="or">
                 <SELRESTR Value="+" type="animate"/>
                 <SELRESTR Value="+" type="organization"/>
             </SELRESTRS>
         </THEMROLE>
-        <THEMROLE type="Co-Theme">
+        <THEMROLE type="Theme">
             <SELRESTRS/>
         </THEMROLE>
     </THEMROLES>
@@ -38,7 +38,7 @@
                     <SYNRESTRS/>
                 </NP>
                 <VERB/>
-                <NP value="Theme">
+                <NP value="Beneficiary">
                     <SYNRESTRS/>
                 </NP>
             </SYNTAX>
@@ -47,14 +47,14 @@
                     <ARGS>
                         <ARG type="Event" value="during(E)"/>
                         <ARG type="ThemRole" value="Agent"/>
-                        <ARG type="ThemRole" value="Theme"/>
-                        <ARG type="ThemRole" value="?Co-Theme"/>
+                        <ARG type="ThemRole" value="Beneficiary"/>
+                        <ARG type="ThemRole" value="?Theme"/>
                     </ARGS>
                 </PRED>
             </SEMANTICS>
         </FRAME>
         <FRAME>
-            <DESCRIPTION descriptionNumber="0.2" primary="NP V NP PP.co-theme" secondary="NP-PP; against-PP" xtag="0.2"/>
+            <DESCRIPTION descriptionNumber="0.2" primary="NP V NP PP.theme" secondary="NP-PP; against-PP" xtag="0.2"/>
             <EXAMPLES>
                 <EXAMPLE>I defended them against the warriors.</EXAMPLE>
             </EXAMPLES>
@@ -63,13 +63,13 @@
                     <SYNRESTRS/>
                 </NP>
                 <VERB/>
-                <NP value="Theme">
+                <NP value="Beneficiary">
                     <SYNRESTRS/>
                 </NP>
                 <PREP value="against">
                     <SELRESTRS/>
                 </PREP>
-                <NP value="Co-Theme">
+                <NP value="Theme">
                     <SYNRESTRS>
                         <SYNRESTR Value="-" type="sentential"/>
                     </SYNRESTRS>
@@ -80,8 +80,8 @@
                     <ARGS>
                         <ARG type="Event" value="during(E)"/>
                         <ARG type="ThemRole" value="Agent"/>
+                        <ARG type="ThemRole" value="Beneficiary"/>
                         <ARG type="ThemRole" value="Theme"/>
-                        <ARG type="ThemRole" value="Co-Theme"/>
                     </ARGS>
                 </PRED>
             </SEMANTICS>
@@ -96,7 +96,7 @@
                     <SYNRESTRS/>
                 </NP>
                 <VERB/>
-                <NP value="Theme">
+                <NP value="Beneficiary">
                     <SYNRESTRS>
                         <SYNRESTR Value="+" type="ac_ing"/>
                     </SYNRESTRS>
@@ -107,8 +107,8 @@
                     <ARGS>
                         <ARG type="Event" value="during(E)"/>
                         <ARG type="ThemRole" value="Agent"/>
+                        <ARG type="ThemRole" value="Beneficiary"/>
                         <ARG type="ThemRole" value="?Theme"/>
-                        <ARG type="ThemRole" value="Theme"/>
                     </ARGS>
                 </PRED>
             </SEMANTICS>
@@ -123,7 +123,7 @@
                     <SYNRESTRS/>
                 </NP>
                 <VERB/>
-                <NP value="Theme">
+                <NP value="Beneficiary">
                     <SYNRESTRS>
                         <SYNRESTR Value="+" type="poss_ing"/>
                     </SYNRESTRS>
@@ -134,8 +134,8 @@
                     <ARGS>
                         <ARG type="Event" value="during(E)"/>
                         <ARG type="ThemRole" value="Agent"/>
+                        <ARG type="ThemRole" value="Beneficiary"/>
                         <ARG type="ThemRole" value="?Theme"/>
-                        <ARG type="ThemRole" value="Theme"/>
                     </ARGS>
                 </PRED>
             </SEMANTICS>

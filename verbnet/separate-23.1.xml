@@ -144,7 +144,7 @@
         <FRAME>
             <DESCRIPTION descriptionNumber="1.1.1" primary="NP V ADVP-Middle PP" secondary="Middle Construction" xtag=""/>
             <EXAMPLES>
-                <EXAMPLE>Cream separates easily from milk.</EXAMPLE>
+                <EXAMPLE>The cream separated easily from milk.</EXAMPLE>
             </EXAMPLES>
             <SYNTAX>
                 <NP value="Patient">
@@ -160,15 +160,20 @@
                 </NP>
             </SYNTAX>
             <SEMANTICS>
-                <PRED value="property">
+                <PRED value="together">
                     <ARGS>
-                        <ARG type="ThemRole" value="Patient+Co-Patient"/>
-                        <ARG type="VerbSpecific" value="Prop"/>
+                        <ARG type="Event" value="start(E)"/>
+                        <ARG type="Constant" value="physical/abstract"/>
+                        <ARG type="ThemRole" value="Patient"/>
+                        <ARG type="ThemRole" value="Co-Patient"/>
                     </ARGS>
                 </PRED>
-                <PRED value="Adv">
+                <PRED value="apart">
                     <ARGS>
-                        <ARG type="VerbSpecific" value="Prop"/>
+                        <ARG type="Event" value="end(E)"/>
+                        <ARG type="Constant" value="physical/abstract"/>
+                        <ARG type="ThemRole" value="Patient"/>
+                        <ARG type="ThemRole" value="Co-Patient"/>
                     </ARGS>
                 </PRED>
             </SEMANTICS>
@@ -176,7 +181,7 @@
         <FRAME>
             <DESCRIPTION descriptionNumber="1.1.1" primary="NP V ADVP-Middle" secondary="Middle Construction" xtag=""/>
             <EXAMPLES>
-                <EXAMPLE>Egg yolks and egg whites separate easily.</EXAMPLE>
+                <EXAMPLE>The egg yolks and egg whites separated easily.</EXAMPLE>
             </EXAMPLES>
             <SYNTAX>
                 <NP value="Patient">
@@ -188,15 +193,20 @@
                 <ADV/>
             </SYNTAX>
             <SEMANTICS>
-                <PRED value="property">
+                <PRED value="together">
                     <ARGS>
-                        <ARG type="ThemRole" value="Patient"/>
-                        <ARG type="VerbSpecific" value="Prop"/>
+                        <ARG type="Event" value="start(E)"/>
+                        <ARG type="Constant" value="physical/abstract"/>
+                        <ARG type="ThemRole" value="Patient_i"/>
+                        <ARG type="ThemRole" value="Patient_j"/>
                     </ARGS>
                 </PRED>
-                <PRED value="Adv">
+                <PRED value="apart">
                     <ARGS>
-                        <ARG type="VerbSpecific" value="Prop"/>
+                        <ARG type="Event" value="end(E)"/>
+                        <ARG type="Constant" value="physical/abstract"/>
+                        <ARG type="ThemRole" value="Patient_i"/>
+                        <ARG type="ThemRole" value="Patient_j"/>
                     </ARGS>
                 </PRED>
             </SEMANTICS>

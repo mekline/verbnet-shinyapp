@@ -202,7 +202,7 @@
         <FRAME>
             <DESCRIPTION descriptionNumber="1.1.1" primary="NP V PP ADV-Middle" secondary="Middle Construction" xtag=""/>
             <EXAMPLES>
-                <EXAMPLE>Twigs break off of those branches easily.</EXAMPLE>
+                <EXAMPLE>The twigs broke off of those branches easily.</EXAMPLE>
             </EXAMPLES>
             <SYNTAX>
                 <NP value="Patient">
@@ -218,15 +218,20 @@
                 <ADV/>
             </SYNTAX>
             <SEMANTICS>
-                <PRED value="property">
+                <PRED value="together">
                     <ARGS>
-                        <ARG type="ThemRole" value="Patient+Co-Patient"/>
-                        <ARG type="VerbSpecific" value="Prop"/>
+                        <ARG type="Event" value="start(E)"/>
+                        <ARG type="Constant" value="physical"/>
+                        <ARG type="ThemRole" value="Patient"/>
+                        <ARG type="ThemRole" value="Co-Patient"/>
                     </ARGS>
                 </PRED>
-                <PRED value="Adv">
+                <PRED value="apart">
                     <ARGS>
-                        <ARG type="VerbSpecific" value="Prop"/>
+                        <ARG type="Event" value="result(E)"/>
+                        <ARG type="Constant" value="physical"/>
+                        <ARG type="ThemRole" value="Patient"/>
+                        <ARG type="ThemRole" value="Co-Patient"/>
                     </ARGS>
                 </PRED>
             </SEMANTICS>
@@ -234,7 +239,7 @@
         <FRAME>
             <DESCRIPTION descriptionNumber="1.1.1" primary="NP V ADV-Middle" secondary="Middle Construction" xtag=""/>
             <EXAMPLES>
-                <EXAMPLE>Those twigs and branches break apart easily.</EXAMPLE>
+                <EXAMPLE>Those twigs and branches broke apart easily.</EXAMPLE>
             </EXAMPLES>
             <SYNTAX>
                 <NP value="Patient">
@@ -247,15 +252,20 @@
                 <ADV/>
             </SYNTAX>
             <SEMANTICS>
-                <PRED value="property">
+                <PRED value="together">
                     <ARGS>
-                        <ARG type="ThemRole" value="Patient"/>
-                        <ARG type="VerbSpecific" value="Prop"/>
+                        <ARG type="Event" value="start(E)"/>
+                        <ARG type="Constant" value="physical"/>
+                        <ARG type="ThemRole" value="Patient_i"/>
+                        <ARG type="ThemRole" value="Patient_j"/>
                     </ARGS>
                 </PRED>
-                <PRED value="Adv">
+                <PRED value="apart">
                     <ARGS>
-                        <ARG type="VerbSpecific" value="Prop"/>
+                        <ARG type="Event" value="result(E)"/>
+                        <ARG type="Constant" value="physical"/>
+                        <ARG type="ThemRole" value="Patient_i"/>
+                        <ARG type="ThemRole" value="Patient_j"/>
                     </ARGS>
                 </PRED>
             </SEMANTICS>

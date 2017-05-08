@@ -30,6 +30,9 @@ function(input, output,session) {
    
    output$verb <- renderUI({
     python.call("final_print",input$search3) })
+   output$url<-renderUI({
+     python.call("url",input$search3)
+   })
 }
 
 

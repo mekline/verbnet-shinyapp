@@ -178,7 +178,7 @@
         <FRAME>
             <DESCRIPTION descriptionNumber="1.1.1" primary="NP V ADV-Middle" secondary="Middle Construction" xtag=""/>
             <EXAMPLES>
-                <EXAMPLE>Crystal vases break easily.</EXAMPLE>
+                <EXAMPLE>The crystal vases broke easily.</EXAMPLE>
             </EXAMPLES>
             <SYNTAX>
                 <NP value="Patient">
@@ -188,15 +188,17 @@
                 <ADV/>
             </SYNTAX>
             <SEMANTICS>
-                <PRED value="property">
+                <PRED value="degradation_material_integrity">
                     <ARGS>
+                        <ARG type="Event" value="result(E)"/>
                         <ARG type="ThemRole" value="Patient"/>
-                        <ARG type="VerbSpecific" value="Prop"/>
                     </ARGS>
                 </PRED>
-                <PRED value="Adv">
+                <PRED value="physical_form">
                     <ARGS>
-                        <ARG type="VerbSpecific" value="Prop"/>
+                        <ARG type="Event" value="result(E)"/>
+                        <ARG type="VerbSpecific" value="Form"/>
+                        <ARG type="ThemRole" value="Patient"/>
                     </ARGS>
                 </PRED>
             </SEMANTICS>

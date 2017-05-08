@@ -130,9 +130,6 @@
                     <SYNRESTRS/>
                 </NP>
                 <VERB/>
-                <NP value="Beneficiary">
-                    <SYNRESTRS/>
-                </NP>
                 <NP value="Theme">
                     <SYNRESTRS>
                         <SYNRESTR Value="+" type="oc_to_inf"/>

@@ -26,7 +26,7 @@
         <FRAME>
             <DESCRIPTION descriptionNumber="1.1.1" primary="NP V ADV-Middle" secondary="Middle Construction" xtag=""/>
             <EXAMPLES>
-                <EXAMPLE>Eggs whisk easily.</EXAMPLE>
+                <EXAMPLE>The eggs whisked easily.</EXAMPLE>
             </EXAMPLES>
             <SYNTAX>
                 <NP value="Patient">
@@ -38,15 +38,10 @@
                 <ADV/>
             </SYNTAX>
             <SEMANTICS>
-                <PRED value="property">
+                <PRED value="degradation_material_integrity">
                     <ARGS>
-                        <ARG type="ThemRole" value="Patient+Co-Patient"/>
-                        <ARG type="VerbSpecific" value="Prop"/>
-                    </ARGS>
-                </PRED>
-                <PRED value="Adv">
-                    <ARGS>
-                        <ARG type="VerbSpecific" value="Prop"/>
+                        <ARG type="Event" value="result(E)"/>
+                        <ARG type="ThemRole" value="Patient"/>
                     </ARGS>
                 </PRED>
             </SEMANTICS>
@@ -54,7 +49,7 @@
         <FRAME>
             <DESCRIPTION descriptionNumber="1.1.1" primary="NP V together ADV-Middle" secondary="Middle Construction" xtag=""/>
             <EXAMPLES>
-                <EXAMPLE>Sugar and cream whip together easily.</EXAMPLE>
+                <EXAMPLE>The sugar and cream whipped together easily.</EXAMPLE>
             </EXAMPLES>
             <SYNTAX>
                 <NP value="Patient">
@@ -67,15 +62,24 @@
                 <LEX value="together"/>
             </SYNTAX>
             <SEMANTICS>
-                <PRED value="property">
+                <PRED value="degradation_material_integrity">
                     <ARGS>
-                        <ARG type="ThemRole" value="Patient+Co-Patient"/>
-                        <ARG type="VerbSpecific" value="Prop"/>
+                        <ARG type="Event" value="result(E)"/>
+                        <ARG type="ThemRole" value="Patient"/>
                     </ARGS>
                 </PRED>
-                <PRED value="Adv">
+                <PRED value="degradation_material_integrity">
                     <ARGS>
-                        <ARG type="VerbSpecific" value="Prop"/>
+                        <ARG type="Event" value="result(E)"/>
+                        <ARG type="ThemRole" value="Co-Patient"/>
+                    </ARGS>
+                </PRED>
+                <PRED value="mingled">
+                    <ARGS>
+                        <ARG type="Event" value="result(E)"/>
+                        <ARG type="Constant" value="physical"/>
+                        <ARG type="ThemRole" value="Patient"/>
+                        <ARG type="ThemRole" value="Co-Patient"/>
                     </ARGS>
                 </PRED>
             </SEMANTICS>
@@ -203,7 +207,7 @@
         <FRAME>
             <DESCRIPTION descriptionNumber="1.1.1" primary="NP V PP ADV-Middle" secondary="Middle Construction" xtag=""/>
             <EXAMPLES>
-                <EXAMPLE>Sugar whips into cream easily.</EXAMPLE>
+                <EXAMPLE>The sugar whipped into cream easily.</EXAMPLE>
             </EXAMPLES>
             <SYNTAX>
                 <NP value="Patient">
@@ -219,16 +223,24 @@
                  <ADV/>
             </SYNTAX>
             <SEMANTICS>
-                <PRED value="property">
+                <PRED value="degradation_material_integrity">
                     <ARGS>
-                        <ARG type="ThemRole"
-                        value="Patient+Co-Patient"/>
-                        <ARG type="VerbSpecific" value="Prop"/>
+                        <ARG type="Event" value="result(E)"/>
+                        <ARG type="ThemRole" value="Patient"/>
                     </ARGS>
                 </PRED>
-                <PRED value="Adv">
+                <PRED value="degradation_material_integrity">
                     <ARGS>
-                        <ARG type="VerbSpecific" value="Prop"/>
+                        <ARG type="Event" value="result(E)"/>
+                        <ARG type="ThemRole" value="Co-Patient"/>
+                    </ARGS>
+                </PRED>
+                <PRED value="mingled">
+                    <ARGS>
+                        <ARG type="Event" value="result(E)"/>
+                        <ARG type="Constant" value="physical"/>
+                        <ARG type="ThemRole" value="Patient"/>
+                        <ARG type="ThemRole" value="Co-Patient"/>
                     </ARGS>
                 </PRED>
             </SEMANTICS>
