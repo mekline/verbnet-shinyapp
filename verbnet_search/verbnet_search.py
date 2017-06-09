@@ -1,6 +1,7 @@
 import cPickle as pickle
 import cgi
 import json
+import csv
 
 classes_dict = pickle.load(open('save.p','rb'))
 
@@ -78,7 +79,6 @@ def return_verb_list(search_term,search_category):
 		verbs = sorted(verbs, key=lambda s: s.lower())
 		verbs.append('')
 		return(verbs)
-
 
 def class_given_verb(search_verb):
 	'''returns the class dictionary that a verb is in'''
@@ -196,29 +196,38 @@ def final_print(verb):
 		'Roles: ' + str(role) + '\n' +
 		'Frames: ' + str(frames) + '\n' +
 		'Unified Verb Index: ' + str(url) + '\n\n' + 
-         addendum())
-
-def addendum():
+         writecsv())
+    
+def writecsv():
     dct = makedict()
-    #allframes = all_frames()
-    string = ''
-    for s in list(dct.items()):
-        string += str(s) + '\n'
-    return(string)
+    
+    with open('verb_frames.csv', 'w') as csv_file:
+        writer = csv.writer(csv_file)
+        for key, value in dct.items():
+            writer.writerow([key, value])
+    return('Wrote to .csv')
 
 def all_frames():
-    frames = []
-    for verb in all_verbs(classes_dict):
-        frames += frames_given_verb(verb, classes_dict)
-    frames = list(set(frames)) #making this a list of unique frames (removing duplicates)
-    frames = list(filter(None, frames)) #removing empty strings
-    return(frames)
+    #code is from return_verb_list above
+    af = []
+    for x in classes_dict:
+        frame = gen_dict_extract('frames', x)
+        frame = list(frame)
+        af.append(frame)
+    af = [item for sublist in af for item in sublist]
+    af = [item for sublist in af for item in sublist]
+    af = list(set(af)) #making this a list of unique frames (removing duplicates)
+    af = list(filter(None, af)) #removing empty strings
+    af = sorted(af, key=lambda s: s.lower())
+    af.append('')
+    return(af)
 
 def makedict():
     allframes = all_frames()
     dct = {}
     for verb in all_verbs(classes_dict):
-        dct[verb] = [0] * 220
-        for frame in frames_given_verb(verb, classes_dict):
-            dct[verb][allframes.index(frame)] = 1
+        if ' ' in verb:
+            dct[verb[:verb.index(' ')]] = [0] * 292
+            for frame in frames_given_verb(verb, classes_dict):
+                dct[verb[:verb.index(' ')]][allframes.index(frame)] = 1
     return(dct)
