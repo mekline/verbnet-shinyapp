@@ -19,7 +19,6 @@ def gen_dict_extract(key, var):
 					for result in gen_dict_extract(key, d):
 						yield result
 
-
 def all_verbs(classes_dict=classes_dict):
 	'''returns list of all verbs'''
 	all_verbs = []
@@ -80,17 +79,6 @@ def return_verb_list(search_term,search_category):
 		verbs.append('')
 		return(verbs)
 
-def class_given_verb(search_verb):
-	'''returns the class dictionary that a verb is in'''
-	search_verb = search_verb.split('(class: ')
-	search_class = search_verb[-1]
-	search_class = search_class.replace(')','')
-	for x in classes_dict:
-		for keys in x:
-			if search_class in keys:
-				correct_class = x
-	return(correct_class)
-
 def class_name_given_verb(search_verb):
 	'''returns class name given verb'''
 	x = class_given_verb(search_verb)
@@ -98,14 +86,62 @@ def class_name_given_verb(search_verb):
 	x = x[0]
 	return(x)
 
+#####MY MODIFICATIONS####
 def frames_given_verb(search_verb,d_list=classes_dict):
-	'''given a verb, prints frames for that verb'''
-	correct_class = class_given_verb(search_verb)
-	frame = gen_dict_extract('frames', correct_class)
-	frame = list(frame)
-	frame = [item for sublist in frame for item in sublist] #flattening list
-	return(frame)
+    clss = class_given_verb(search_verb)
+    def frames_given_class(clss):
+        frames = list(clss.items())[0][1][-1]['frames']
+        old_class = list(clss.items())[0][0]
+        fst = old_class[:old_class.index('-')+1]
+        snd = old_class[old_class.index('-')+1:]
+        if snd.rfind('-') == -1:
+            return(frames)
+        else:
+            snd = snd[:snd.rfind('-')]
+            search_class = fst + snd
+            foundit = False
+            for x in classes_dict:
+                for keys in x:
+                    if search_class == keys: # change made here
+                        new_class = x
+                        foundit = True
+            if foundit:
+                return(frames + frames_given_class(new_class))
+            else:
+                return(frames)
+    return(frames_given_class(clss))
 
+def class_given_verb(search_verb):
+	'''returns the class dictionary that a verb is in'''
+	search_verb = search_verb.split('(class: ')
+	search_class = search_verb[-1]
+	search_class = search_class.replace(')','')
+	for x in classes_dict:
+		for keys in x:
+			if search_class == keys: # change made here
+				correct_class = x
+	return(correct_class)
+
+#def frames_given_verb(search_verb,d_list=classes_dict):
+#	'''given a verb, prints frames for that verb'''
+#	correct_class = class_given_verb(search_verb)
+#	frame = gen_dict_extract('frames', correct_class)
+#	frame = list(frame)
+#	frame = [item for sublist in frame for item in sublist] #flattening list
+#	return(frame)
+
+#def class_given_verb(search_verb):
+#	'''returns the class dictionary that a verb is in'''
+#	search_verb = search_verb.split('(class: ')
+#	search_class = search_verb[-1]
+#	search_class = search_class.replace(')','')
+#	for x in classes_dict:
+#		for keys in x:
+#			if search_class in keys:
+#				correct_class = x
+#	return(correct_class)
+
+######END MODIFICATIONS########
 
 def roles_given_verb(search_verb,d_list=classes_dict):
 	'''given a verb, prints frames for that verb'''
@@ -195,9 +231,10 @@ def final_print(verb):
 		'Class: ' + str(v_class) + '\n' +
 		'Roles: ' + str(role) + '\n' +
 		'Frames: ' + str(frames) + '\n' +
-		'Unified Verb Index: ' + str(url) + '\n\n' + 
-         writecsv())
-    
+		'Unified Verb Index: ' + str(url) + '\n\n' + writecsv())
+
+#code below this line is added by Kyle. I'm just writing a few scripts so that calling any of the shiny_app functionality results in writing the data i need (i.e. the frame vectors) to the csv in the same directory. A little inelegant but it gets the job done. You can see where I ask the final_print method to write to a csv after it's done all its usual task of answering your search query - it's right above here. 
+
 def writecsv():
     dct = makedict()
     
@@ -205,10 +242,10 @@ def writecsv():
         writer = csv.writer(csv_file)
         for key, value in dct.items():
             writer.writerow([key, value])
-    return('Wrote to .csv')
+    return('Wrote frame vectors to .csv')
 
 def all_frames():
-    #code is from return_verb_list above
+    #code is from return_verb_list above, pasted into a toplevel method
     af = []
     for x in classes_dict:
         frame = gen_dict_extract('frames', x)
